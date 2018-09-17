@@ -26,23 +26,33 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
   }
   console.log('Connected to mongodb server');
 
-  //all todos
-  //find() returns a mongodb cursor, it's a pointer to the documents in the collection
-  //find(condition) e.g. find({completed: false})
-  db.collection('Users').find({
-    //_id: new ObjectID('5b9228ce752dc836c6c9fa73')
-    name: 'Swagat'
-  }).toArray().then((docs) => {
-    console.log('Todos : ');
-    console.log(JSON.stringify(docs, undefined, 2));
-  }, (err) => {
-    console.log('Unable to fetch Todos', err);
-  });
+//findOneAndUpdate(filter,update(check mongodb update operators:'set' lets us set a field's value inside of the update),options)
+  // db.collection('Todos').findOneAndUpdate({
+  //   _id: new ObjectID('5b9f7ff873cc46a4f29841f1')
+  // }, {
+  //   $set: {
+  //     completed: true
+  //   }
+  // }, {
+  //   returnOriginal: false
+  // }).then((result) => {
+  //   console.log(result);
+  // });
 
-  db.collection('Todos').find().count().then((count) => {
-    console.log('Todos count : ', count);
-  }, (err) => {
-    console.log('Unable to fetch Todos', err);
+  //Task
+  db.collection('Users').findOneAndUpdate({
+    _id: new ObjectID('5b9f566522505554795eabe6')
+  }, {
+    $set: {
+      name: 'Snigdha'
+    },
+    $inc: {
+      age: 1
+    }
+  }, {
+    returnOriginal: false
+  }).then((result) => {
+    console.log(result);
   });
 
   //db.close();
