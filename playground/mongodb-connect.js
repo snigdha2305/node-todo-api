@@ -20,6 +20,7 @@ const {MongoClient, ObjectID} = require('mongodb');
 //second arg is a callback function which is gonna fire if the connection is a success or a failure
 //TodoApp is the database name we're going to create
 //but mongo is not going to create the db unless we start adding data to it
+//Mongoclient takes a callback and that is when we have access to the database
 MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
   if(err) {
     return console.log('Unable to connect to mongodb server');
